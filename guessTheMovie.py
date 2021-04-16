@@ -1,6 +1,6 @@
 import random
 
-movies = ['hello','argon','lol']
+movies = ['java','python','c++']
 
 class Player:
     pts = 0
@@ -30,8 +30,8 @@ def play():
         printScores(p1, p2)
 
 def printScores(p1, p2):
-    print(p1.name,": ", p1.pts )
-    print(p2.name,": ", p2.pts )
+    print(p1.name,":", p1.pts )
+    print(p2.name,":", p2.pts )
 
 def guess_check(player, pick_mov):
     guess = input('Whats it: ')
@@ -42,7 +42,7 @@ def guess_check(player, pick_mov):
         print('wrong guess!')
 
 def player_plays(player):
-    print(player.name, ' turn')
+    print(player.name, 'turn')
     pick_mov =  random.choice(movies)
     hint = "*"*len(pick_mov)
     print(hint)
