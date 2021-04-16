@@ -16,7 +16,6 @@ def play():
     p1 = Player(p1Name)
     p2 = Player(p2Name)
 
-    turn = 0
     nextTurn = True
 
     while nextTurn:
@@ -63,5 +62,6 @@ def Masked(hint, picked_mov, ch):
         if(picked_mov[i]==ch):
             temp[i]=ch
     return "".join(temp)
-
-play()
+    
+if __name__ == '__main__':
+    play()
