@@ -97,13 +97,13 @@ def matched(player, board):
             print(f'matched in column {i}')
             return True
     #trying to find in main diagonal
-    diag = "".join([board[i][i] for i in range(3)])
+    diag = "".join(np.diag(board))
     if to_find==diag:
         print('found in diag')
         return True
 
     #trying to find in rev diagonal
-    rdiag = "".join([board[i][2-i] for i in range(3)])
+    rdiag = "".join(np.diag(np.fliplr(dummy)))
     if to_find==rdiag:
         print('found in revdiag')
         return True
