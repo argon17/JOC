@@ -16,7 +16,7 @@ def get_board():
     """
     Getting the board
     """
-    board = np.reshape(['-']*9, (3,3), order='C')
+    board = np.tile(['-'], (3,3))
     return board
 
 def play(p1, p2):
