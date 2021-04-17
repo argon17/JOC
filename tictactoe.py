@@ -31,17 +31,17 @@ def play(p1, p2):
             player_plays(p1, board)
             if matched(p1, board):
                 p1.won()
-                game_end()
+                game_end(p1, p2)
                 return
         else:
            player_plays(p2, board)
            if matched(p2, board):
                 p2.won()
-                game_end()
+                game_end(p1, p2)
                 return
     #nine moves passed, so game is drawn
     print('Game Drawn')
-    game_end()
+    game_end(p1, p2)
     return
 
 def place(mark, R, C, board):
@@ -63,16 +63,19 @@ def player_plays(player, board):
     """
     completed = False
     while not completed:
-        print(f"{player.name}, your turn...")
-        i,j = input('Enter RC with gap in b/w: ').split()
-        i, j = int(i), int(j)
-        if verified(i, j, board):
-            completed = True
-            place(player.mark, i, j, board)
-            print_board(board)
-        else:
-            print(f"are you noob, {player.name}:(")
-
+        print(f"{player.name}:{player.mark}, play your turn...")
+        try:
+            i,j = input('Enter RC with gap in b/w: ').split()
+            i, j = int(i), int(j)
+            if verified(i, j, board):
+                completed = True
+                place(player.mark, i, j, board)
+                print_board(board, player)
+            else:
+                print(f"are you noob, {player.name}? :(")
+        except(ValueError):
+            print('Please enter RC with gap in b/w :(')
+        
 #don't read this, it's shit i've written :(
 def matched(player, board):
     """
@@ -102,21 +105,21 @@ def matched(player, board):
     #trying to find in rev diagonal
     rdiag = "".join([board[i][2-i] for i in range(3)])
     if to_find==rdiag:
-        print('found at revdiag')
+        print('found in revdiag')
         return True
 
-def game_end():
+def game_end(p1, p2):
     """
     This function will end the game or start a new game,
     depending on the user input.
     """
     rep= input('Game Ended!, want to play more? y/n: ')
     if rep=='y':
-        play()
+        play(p1, p2)
     else:
         return
 
-def print_board(board):
+def print_board(board, player):
     """
     This function will print the board after each turn
     """
